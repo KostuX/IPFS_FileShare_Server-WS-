@@ -1,1 +1,1 @@
-{"name":"ipfs_fileshare_server","version":"1.0.0","description":"","main":"server.js","type":"module","scripts":{"start":"node server.js"},"dependencies":{"ws":"^8.18.0"}}
+{"name":"ipfs_fileshare_server","version":"1.0.0","description":"","main":"server.js","type":"module","scripts":{"start":"node server.js"},"dependencies":{"kubo-rpc-client":"^5.0.2","ws":"^8.18.0"}}

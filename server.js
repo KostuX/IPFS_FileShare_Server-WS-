@@ -1,5 +1,6 @@
 import { WebSocketServer } from "ws";
 import { wsConfig } from "./variables/config.js";
+import routeRequest from "./utils.js/routeRequest.js";
 export default function Server() {
   let port = wsConfig.port;
   const wsServer = new WebSocketServer({ port: port });
@@ -7,11 +8,18 @@ export default function Server() {
   wsServer.on("connection", (ws) => {
     console.log("client connected");
     ws.on("message", (message) => {
-      console.log("received: %s", message);
-      ws.send(JSON.stringify({ data: "[Server] message received" }));
+      message = JSON.parse(message);
+      ws.send(JSON.stringify({ type: "INFO", data: "Message received" }));
+
+      if (message.type != "INFO") {
+        routeRequest(message);
+      }
     });
 
-    ws.send(JSON.stringify({ data: "Welcome to IPFS Server" }));
+    ws.send(JSON.stringify({ type: "INFO", data: "Welcome to IPFS Server" }));
+    ws.on("close", () => {
+      console.log("Client disconnected");
+    });
   });
 
   console.log(`WebSocket server is running on ws://localhost:${port}`);
