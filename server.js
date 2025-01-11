@@ -8,10 +8,10 @@ export default function Server() {
     console.log("client connected");
     ws.on("message", (message) => {
       console.log("received: %s", message);
-      ws.send("[Server] message received: %s", message);
+      ws.send(JSON.stringify({ data: "[Server] message received" }));
     });
 
-    ws.send("Welcome to IPFS Server");
+    ws.send(JSON.stringify({ data: "Welcome to IPFS Server" }));
   });
 
   console.log(`WebSocket server is running on ws://localhost:${port}`);
