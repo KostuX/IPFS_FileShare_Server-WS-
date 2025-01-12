@@ -1,13 +1,11 @@
 export class User {
-    user = []
-    constructor(){
-        console.log("User Class created")
+    id = null
+    key = null
+    connection = null
+    constructor(id, key, connection){
+        this.id = id
+        this.key = key
+        this.connection = connection
+        console.log("Client Class created")
     }
-
-    add(newUser){
-        this.user.push(newUser)
-        console.log("New user added")
-
-    }
-
 }
