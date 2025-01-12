@@ -1,4 +1,4 @@
-import getCidInfo from "../ipfs/getCIDInfo.js";
+import getCidInfo from "../ipfs/getCidInfo.js";
 export default function routeRequest(req) {
   let type = req.type;
   let data = req.data;
