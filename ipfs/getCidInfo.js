@@ -6,14 +6,23 @@ export default async function getCidInfo(data) {
   let cid = "Qmc5gCcjYypU7y28oCALwfSvxCBskLuPKWpK4qpterKC7z";
 
   let info;
+  let res;
 
-  let res = await fetch(
-    `${ipfs_host}dag/stat?arg=${cid}&encoding=json&progress=false`,
-    {
-      method: "POST",
+  try {
+    res = await fetch(
+      `${ipfs_host}dag/stat?arg=${cid}&encoding=json&progress=false`,
+      {
+        method: "POST",
+      }
+    );
+    try {
+      info = await res.json();
+    } catch (e) {
+      console.log("Invalid json response");
     }
-  );
-  info = await res.json();
+  } catch (e) {
+    console.log("Cannot connect to a IPFS API", e);
+  }
 
   console.log(info);
 }

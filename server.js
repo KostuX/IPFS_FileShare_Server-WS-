@@ -11,7 +11,8 @@ export default function Server() {
       message = JSON.parse(message);
       ws.send(JSON.stringify({ type: "INFO", data: "Message received" }));
 
-      if (message.type != "INFO") {
+      if (message.type != "JOB") {
+        console.log(message);
         routeRequest(message);
       }
     });
