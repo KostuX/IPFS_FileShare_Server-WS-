@@ -3,26 +3,22 @@ import { wsConfig } from "./variables/config.js";
 import routeRequest from "./utils.js/routeRequest.js";
 import { User } from "./src/user.js";
 import { Client } from "./src/clients.js";
-import { jwtDecrypt } from "./src/jwt/jwtLib"
-export default function Server() {
+
+export default async function Server() {
   let port = wsConfig.port;
   const wsServer = new WebSocketServer({ port: port });
 
   wsServer.on("connection", (ws) => {
     console.log("client connected");
 
- 
-    
-    ws.on("message", (message) => {
+    ws.on("message", async (message) => {
       message = JSON.parse(message);
-
-
 
       ws.send(JSON.stringify({ type: "INFO", data: "Message received" }));
 
       if (message.type != "JOB") {
-        console.log(message);
-        routeRequest(message);
+        const res = await routeRequest(message);
+        ws.send(JSON.stringify({ type: "INFO", data: JSON.stringify(res) }));
       }
     });
 
