@@ -13,16 +13,17 @@ export default async function Server() {
 
     ws.on("message", async (message) => {
       message = JSON.parse(message);
+      console.log("Message received");
 
-      ws.send(JSON.stringify({ type: "INFO", data: "Message received" }));
+      ws.send(JSON.stringify({ type: "LOG", data: "Message received" }));
 
       if (message.type != "JOB") {
         const res = await routeRequest(message);
-        ws.send(JSON.stringify({ type: "INFO", data: JSON.stringify(res) }));
+        ws.send(JSON.stringify({ type: "INFO", data: res }));
       }
     });
 
-    ws.send(JSON.stringify({ type: "INFO", data: "Welcome to IPFS Server" }));
+    ws.send(JSON.stringify({ type: "LOG", data: "Welcome to IPFS Server" }));
     ws.on("close", () => {
       console.log("Client disconnected");
     });
