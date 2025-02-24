@@ -18,8 +18,7 @@ export default async function Server() {
       ws.send(JSON.stringify({ type: "LOG", data: "Message received" }));
 
       if (message.type != "JOB") {
-        const res = await routeRequest(message);
-        ws.send(JSON.stringify({ type: "INFO", data: res }));
+        const res = await routeRequest(message, ws);
       }
     });
 
