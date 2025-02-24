@@ -4,16 +4,20 @@ import { ipfs_host } from "../variable/config.js";
 export default async function getCidInfo(cid) {
   const ipfs = create({ url: ipfs_host });
 
-  console.log(cid);
+  // folder cid QmXENoYNCXeXaogL1mFt7M6w1SD7h7mzsSKVETp7etfqnL
+  // hello world Qmc5gCcjYypU7y28oCALwfSvxCBskLuPKWpK4qpterKC7z
   if (!cid) cid = "Qmc5gCcjYypU7y28oCALwfSvxCBskLuPKWpK4qpterKC7z";
 
   let info;
   let res;
-
+// /api/v0/files/ls
   try {
     const parsedCID = CID.parse(cid);
+
     res = await fetch(
-      `${ipfs_host}dag/stat?arg=${cid}&encoding=json&progress=false`,
+     // `${ipfs_host}dag/stat?arg=${cid}&encoding=json&progress=false`,
+      `${ipfs_host}dag/get?arg=${cid}&encoding=json&progress=false`,
+    
       {
         method: "POST",
       }
@@ -28,6 +32,7 @@ export default async function getCidInfo(cid) {
   }
 
   if (info) {
+    console.log(info)
     return { ok: true, cid: cid, data: info };
   } else {
     return { ok: false, cid: cid, data: "Not Found" };

@@ -8,5 +8,9 @@ export default async function routeRequest(req) {
       let res = await getCidInfo(data);
       return res;
     }
+    case "DOWNLOAD":{
+      let stream = await downloadFile(data)
+      return stream;
+    }
   }
 }
