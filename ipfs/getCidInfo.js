@@ -1,22 +1,22 @@
 import { create, globSource, urlSource } from "kubo-rpc-client";
 import { CID } from "multiformats";
 import { ipfs_host } from "../variable/config.js";
+import FileInfo from "../utils/class/fileInfo.js"
 export default async function getCidInfo(cid) {
   const ipfs = create({ url: ipfs_host });
 
-  // folder cid QmXENoYNCXeXaogL1mFt7M6w1SD7h7mzsSKVETp7etfqnL
-  // hello world Qmc5gCcjYypU7y28oCALwfSvxCBskLuPKWpK4qpterKC7z
-  if (!cid) cid = "Qmc5gCcjYypU7y28oCALwfSvxCBskLuPKWpK4qpterKC7z";
 
-  let info;
+  let info =  new FileInfo()
   let res;
   // /api/v0/files/ls
   try {
     const parsedCID = CID.parse(cid);
-
+   
+   cid = 'QmXENoYNCXeXaogL1mFt7M6w1SD7h7mzsSKVETp7etfqnL' // folder
+ // cid = 'Qmc5gCcjYypU7y28oCALwfSvxCBskLuPKWpK4qpterKC7z' // hello world
     res = await fetch(
-      // `${ipfs_host}dag/stat?arg=${cid}&encoding=json&progress=false`,
-      `${ipfs_host}dag/get?arg=${cid}&encoding=json&progress=false`,
+     // `${ipfs_host}dag/stat?arg=${cid}&encoding=json&progress=false`, // TotalSize
+     `${ipfs_host}dag/get?arg=${cid}&encoding=json&progress=false`, // get links
 
       {
         method: "POST",
