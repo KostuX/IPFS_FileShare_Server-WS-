@@ -1,0 +1,5 @@
+   
+cid = 'QmXENoYNCXeXaogL1mFt7M6w1SD7h7mzsSKVETp7etfqnL' // folder
+cid = 'Qmc5gCcjYypU7y28oCALwfSvxCBskLuPKWpK4qpterKC7z' // hello world
+cid = 'Qmb2opzCcLbweZCEcVKTRVWP2PGKp5w3VzdB1TEngCVuRM' // 1gb single file
+cid = 'QmQoXLF4kPtqMfmgUbA1jQEFoW7YE6jJxYqmfzKJxEFKEQ' // 60bm single file
