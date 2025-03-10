@@ -15,7 +15,7 @@ export default async function routeRequest(req, ws) {
       console.log(readStream);
       readStream.on("data", (chunk) => {
         console.log(chunk);
-        ws.send({ type: "INFO", data: chunk });
+             ws.send(JSON.stringify({ type: "INFO", data: res }));
       });
       readStream.on("end", () => {
         ws.send(JSON.stringify({ type: "DOWNLOAD_COMPLETE" }));
