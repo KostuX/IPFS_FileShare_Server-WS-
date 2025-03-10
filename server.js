@@ -1,6 +1,6 @@
 import { WebSocketServer } from "ws";
 import { wsConfig } from "./variables/config.js";
-import routeRequest from "./utils.js/routeRequest.js";
+import routeRequest from "./utils/routeRequest.js";
 import { User } from "./src/user.js";
 import { Client } from "./src/clients.js";
 
